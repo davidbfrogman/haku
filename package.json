@@ -1,10 +1,10 @@
 {
-  "name": "alembic.list.api",
-  "version": "0.0.3",
+  "name": "haku.web.api",
+  "version": "0.0.1",
   "license": "MIT",
   "author": "Dave Brown",
   "repository": {
-    "url": "http://app.lyraatlas.com",
+    "url": "http://haku.wo.com",
     "type": "git"
   },
   "scripts": {

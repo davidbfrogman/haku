@@ -1,4 +1,4 @@
-# Alembic List API 
+# haku List API 
  
 Implementation of async - await methods in mongoose and express.
 
@@ -58,7 +58,7 @@ load testing with artillery use the artillery.yml file.  This won't work without
     // These ones won't actually work unless you pass in the auth token, but they're good to see how the config on command line works.
     artillery quick --duration 60 --rate 100 -n 20 http://localhost:8080/api/users
 
-    artillery quick --duration 60 --rate 100 -n 20 https://alembic-vendor-api-alpha.herokuapp.com/api/users
+    artillery quick --duration 60 --rate 100 -n 20 https://haku.wo.com/predict
 ```
 
 If you want to actually start using TLS/HTTPS you need to turn on Helmet to prevent a bunch of attacks on the server:
@@ -86,18 +86,18 @@ Take a look at the logs for a container.
 
  ```docker build -t davebrowndev/product.api .```
 
- ```docker stop alembic-product-api```
+ ```docker stop haku-product-api```
 
-```docker run --name=alembic-product-api -p 8080:8080 davebrowndev/product.api```
+```docker run --name=haku-product-api -p 8080:8080 davebrowndev/product.api```
 
 Removing a named container
-```docker rm /alembic-product-api```
+```docker rm /haku-product-api```
 
 Run it in the background--->
-```docker run -d --name=alembic-product-api -p 8080:8080 davebrowndev/product.api ```
+```docker run -d --name=haku-product-api -p 8080:8080 davebrowndev/product.api ```
 
 Then you can stream the logs out if you want
-```docker attach alembic-product-api```
+```docker attach haku-product-api```
 
 Did you get a segmentation fault on running the image?  Maybe you need to rebuild the docker image from scratch
 ```docker build --no-cache -t davebrowndev/product.api .```
@@ -135,7 +135,7 @@ Copy the dump back over locally
  # Logging into a rancher created instance
 First download the keys from the host.  You go to hosts, and then machine config.
 Place the keys in a folder.
-My keys are stored in f:\alembic\servers\SERVER_NAME
+My keys are stored in f:\haku\servers\SERVER_NAME
 cd into the server name you want to connect to.
 
 # Rancher dev-luxor-1
@@ -209,7 +209,7 @@ Clean up email verification emails to actually be sent out.
 
 ```
 #!/bin/sh
-export MONGO_CONNECTION_STRING=mongodb://asdfasdf:stupidpasshere@asdfasdf.mlab.com:2323423/alembic-development
+export MONGO_CONNECTION_STRING=mongodb://asdfasdf:stupidpasshere@asdfasdf.mlab.com:2323423/haku-development
 export FACEBOOK_CLIENT_SECRET=therealsecret
 export NODE_ENV=dev
 export LA_ENV=dev.lyraatlas

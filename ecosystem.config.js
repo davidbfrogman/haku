@@ -7,7 +7,7 @@ module.exports = {
 
     // Spawn 1 instance
     {
-      name: 'albc.web',
+      name: 'haku.srv',
       script: './dist/server.js',
       instances: 1,
       max_memory_restart: '500M',
