@@ -1,7 +1,7 @@
 import { NextFunction, Request, RequestHandler, RequestParamHandler, Response, Router } from 'express';
 import { Document, DocumentQuery, Model, Schema } from 'mongoose';
 import * as log from 'winston';
-import { IValidationError, SearchCriteria, IBaseModel, IBaseModelDoc, ITokenPayload, IOwned, ILikeable, IOwner } from '../../models/';
+import { IValidationError, SearchCriteria, IBaseModel, IBaseModelDoc, ITokenPayload, IOwned, IOwner } from '../../models/';
 import { ObjectId } from 'bson';
 import { BaseRepository } from "../../repositories/";
 import { CONST } from "../../constants";

@@ -3,12 +3,12 @@ import * as express from 'express';
 import mongoose = require('mongoose');
 import { Schema, Model, Document } from 'mongoose';
 import { Config } from '../config/config';
-import { ITokenPayload, IBaseModelDoc, IUserDoc, User, IEmailVerification, SearchCriteria, IUser, IOwned, IOwner } from '../models/';
+import { ITokenPayload, IBaseModelDoc, IUserDoc, User, SearchCriteria, IUser, IOwned, IOwner } from '../models/';
 import { CONST } from "../constants";
 import { ApiErrorHandler } from "../api-error-handler";
 import * as log from 'winston';
 import { BaseController } from './base/base.controller';
-import { BaseRepository, UserRepository, EmailVerificationRepository } from '../repositories/index';
+import { BaseRepository, UserRepository } from '../repositories/index';
 import * as moment from 'moment';
 import * as enums from '../enumerations';
 
@@ -49,44 +49,6 @@ export class AuthenticationController extends BaseController{
             await this.sendTokenResponse(request,response,next);
 
         } catch (err) { ApiErrorHandler.sendAuthFailure(response, 401, err); }
-    }
-
-    public async upsertSocialAuth(accessToken, refreshToken, profile, done, loginStrategy: enums.LoginStrategy, query : IUser, configureUser: IConfigureUser){
-        var usersFromDB = await this.repository.query(query, null, null);
-
-        if(usersFromDB.length > 1){
-           var err = 'More than one user has that social profile, this shouldnt happen';
-           return done(err, null);
-        }
-        // This means we found our single user, by profile id, and we can return that user.
-        if(usersFromDB.length == 1)
-        {
-            usersFromDB[0].lastLoginStrategy = loginStrategy;
-            return done(null, usersFromDB[0]);
-        }
-        else{
-            // Notice here the email is not being set. in the case of instagram the email doesn't come back from the auth call. 
-            const newUser : IUser = configureUser(profile);
-            newUser.roles = [CONST.USER_ROLE];
-            newUser.isTokenExpired = false;
-            newUser.isActive = true;
-
-            const userDoc = this.repository.createFromInterface(newUser);
-
-            const savedUser = await this.repository.create(userDoc);
-
-            savedUser.owners = new Array<IOwner>();
-
-            // You have to add yourself as an owner, otherwise you can't make changes to your profile. 
-            savedUser.owners.push({
-                ownerId: savedUser.id,
-                ownershipType: enums.OwnershipType.user
-            });
-
-            await this.repository.save(savedUser);
-
-            return done(null, savedUser);
-        }
     }
 
     public async sendTokenResponse(request: Request, response: Response, next: NextFunction): Promise<any> {
@@ -154,16 +116,6 @@ export class AuthenticationController extends BaseController{
             });
 
             await this.repository.update(user.id,user);
-
-            var emailVerifyRepo = new EmailVerificationRepository();
-
-            //Now we create an email verification record
-            let emailVerification: IEmailVerification = {
-                userId: user.id,
-                expiresOn: moment().add(moment.duration(1, 'week')).format(CONST.MOMENT_DATE_FORMAT),
-            }
-            
-            emailVerifyRepo.create(emailVerifyRepo.createFromInterface(emailVerification));
 
             // // if there was a problem sending the email verification email.
             // // we're going to delete the newly created user, and return an error  this will make sure people can still try and register with the same email.

@@ -1,6 +1,6 @@
 import { Database } from '../../config/database/database';
 import { App, server } from '../../server-entry';
-import { Bucket, IBucket, ITokenPayload, IUser } from '../../models';
+import { ITokenPayload, IUser } from '../../models';
 import { Config } from '../../config/config';
 import { CONST } from "../../constants";
 import { AuthUtil } from "../authentication.util";

@@ -1,7 +1,7 @@
 //During the test the env variable is set to test
 import { Database } from '../config/database/database';
 import { App, server } from '../server-entry';
-import { Notification, Bucket, BucketItem, User, EmailVerification } from '../models';
+import { User } from '../models';
 import { Config } from '../config/config';
 import { HealthStatus } from '../health-status';
 import mongoose = require('mongoose');
@@ -23,11 +23,7 @@ export class Cleanup {
             && Database.databaseName.includes('integration')
         ) {
             log.info('Clearing the database.');
-            await Notification.remove({});
-            await Bucket.remove({});
-            await BucketItem.remove({});
             await User.remove({});
-            await EmailVerification.remove({});
             log.info('Database all clear');
         }
         else {

@@ -8,7 +8,6 @@ import * as helmet from 'helmet';
 import * as routers from './routers';
 
 import * as passport from 'passport';
-import { Strategy as local, IStrategyOptions } from 'passport-local';
 
 import { ObjectId } from 'bson';
 import { join } from 'path';
@@ -30,11 +29,11 @@ import path = require('path');
 import cors = require('cors')
 import { AuthenticationController } from './controllers/authentication.controller';
 import { MulterConfiguration } from './config/multer.configuration';
-import { ImageUploadController, BucketController, BucketItemController } from './controllers/index';
+import { } from './controllers/index';
 import { IdentityApiService } from './services/identity.api.service';
 import { User } from './models/index';
-import { BucketRouter, AuthenticationRouter, BucketItemRouter } from './routers';
-import { ImageControllerMixin } from './controllers/base/images.controller.mixin';
+import {  AuthenticationRouter } from './routers';
+
 
 // Creates and configures an ExpressJS web server.
 class Application {
@@ -55,7 +54,6 @@ class Application {
         this.connectDatabase(); // Setup database connection
         this.seedSupportingServices();  // We want to make sure that anything this service needs exists in other services.
         this.loggingClientEndpoint();
-        //this.authenticateSystemUser(); // This will speed up situations where 
         this.initPassport(); // here's where we're going to setup all our passport handlers.
         this.middleware();   // Setup the middleware - compression, etc...
         this.secure();       // Turn on security measures
@@ -75,13 +73,6 @@ class Application {
     private async initPassport() {
         this.express.use(passport.initialize());
         // Here we should also configure all of our middleware strategies for passport.  Facebook, instagram, twitter, gmail, etc.
-    }
-
-    // At startup, we're going to automatically authenticate the system user, so we can use that token
-    private async authenticateSystemUser(): Promise<void> {
-        // we're not going to auth the system user, there is no system user.
-        await IdentityApiService.getSysToken();
-        log.info(`System user has been authenticated.`);
     }
 
     // Here we're going to make sure that the environment is setup.  
@@ -228,16 +219,13 @@ class Application {
         // Now we lock up the rest.
         this.express.use('/api/*', new AuthenticationController().authMiddleware);
 
-        this.express.use(CONST.ep.API + CONST.ep.V1, Authz.permit(CONST.ADMIN_ROLE, CONST.USER_ROLE), new routers.BucketRouter().getRouter());
-        this.express.use(CONST.ep.API + CONST.ep.V1, Authz.permit(CONST.ADMIN_ROLE, CONST.USER_ROLE), new routers.BucketItemRouter().getRouter());
         this.express.use(CONST.ep.API + CONST.ep.V1, Authz.permit(CONST.ADMIN_ROLE, CONST.USER_ROLE), new routers.UserRouter().getRouter());
-        this.express.use(CONST.ep.API + CONST.ep.V1, Authz.permit(CONST.ADMIN_ROLE, CONST.USER_ROLE), new routers.NotificationRouter().getRouter());
 
         this.express.use(`${CONST.ep.API}${CONST.ep.V1}${CONST.ep.BUCKETS}${CONST.ep.IMAGES}/:id`,
             Authz.permit(CONST.ADMIN_ROLE, CONST.USER_ROLE),
             new MulterConfiguration().uploader.array('file'),
             async (req, res, next) => {
-                await new BucketRouter().ImageHandler(req, res, next);
+                //await new BucketRouter().ImageHandler(req, res, next);
             }
         );
 
@@ -245,7 +233,7 @@ class Application {
             Authz.permit(CONST.ADMIN_ROLE, CONST.USER_ROLE),
             new MulterConfiguration().uploader.array('file'),
             async (req, res, next) => {
-                await new BucketItemRouter().ImageHandler(req, res, next);
+                //await new BucketItemRouter().ImageHandler(req, res, next);
             }
         );
     }

@@ -76,6 +76,32 @@ npm install
 If you hit the root, you'll see how you can work with the api.  the docs location etc.
 
 # Docker Cheat sheet
+--------------------------------------------
+
+A lot of the time you're going to have to run ps -a , to see the stopped containers.  These things exit, and lay around without much logging.  It's good to look at what's still
+in the list of things docker knows about, even if it is stopped. 
+```
+docker ps -a
+```
+
+running mongo locally in a docker container.  Notice here that I'm not running mongo on the default port.  If you have a bunch of mongo instances running, it's a bit easier to 
+come up with a new port number
+```
+docker run -p 8989:27017 --name haku-mongo -d mongo:latest 
+```
+
+check the logs, and make sure that it's actually running
+```
+docker logs haku-mongo
+```
+
+
+for testing that the mongo image is actually up and running.
+```
+docker run --name haku-mongo-ui --link haku-mongo:mongo -p 4040:8081 mongo-express
+```
+
+--------------------------------------------
 
 if you're constantly building the image.... you'll want to clean up the lingering images
 ```docker image prune```

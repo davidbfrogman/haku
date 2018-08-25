@@ -18,28 +18,6 @@ export interface IUser extends IBaseModel, IOwned, ITimeStamped {
     isActive?: boolean;
     createdAt?: Date; //Automatically created by mongoose.
     modifiedAt?: Date; //Automatically created by mongoose.
-    facebookAuth?: {
-        id?: string,
-        token?: string,
-        name?: string,
-    }
-    twitterAuth?:{
-        id?           : string,
-        token?        : string,
-        displayName?  : string,
-        username?     : string
-    }
-    googleAuth?:{
-        id?           : string,
-        token?        : string,
-        name?         : string
-    }
-    instagramAuth?:{
-        id           : string,
-        token?        : string,
-        name?         : string,
-        username?     : string
-    }
 }
 
 export interface IUserDoc extends IUser, IBaseModelDoc {
@@ -62,28 +40,6 @@ const UserSchema = new Schema({
     href: {type:String},
     isActive: {type: Boolean, required: true, default: true},
     lastLoginStrategy: { type: Number, enum: [enums.EnumHelper.getValuesFromEnum(enums.LoginStrategy)] },
-    facebookAuth         : {
-        id           : {type:String},
-        token        : {type:String},
-        name         : {type:String}
-    },
-    twitterAuth          : {
-        id           : {type:String},
-        token        : {type:String},
-        displayName  : {type:String},
-        username     : {type:String}
-    },
-    googleAuth           : {
-        id           : {type:String},
-        token        : {type:String},
-        name         : {type:String}
-    },
-    instagramAuth           : {
-        id           : {type:String},
-        token        : {type:String},
-        name         : {type:String},
-        username     : {type:String}
-    }
 },{timestamps:true});
 
 //If you do any pre save methods, and you use fat arrow syntax 'this' doesn't refer to the document.
