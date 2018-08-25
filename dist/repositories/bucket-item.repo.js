@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = require("../models/index");
+const index_2 = require("./index");
+class BucketItemRepository extends index_2.BaseRepository {
+    constructor() {
+        super();
+        this.mongooseModelInstance = index_1.BucketItem;
+    }
+}
+exports.BucketItemRepository = BucketItemRepository;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9kYXZlYnJvd24vRG9jdW1lbnRzL2x5cmEvYWxlbWJpYy53ZWIvc2VydmVyL3JlcG9zaXRvcmllcy9idWNrZXQtaXRlbS5yZXBvLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsMkNBQTZEO0FBRTdELG1DQUF5QztBQUV6QywwQkFBa0MsU0FBUSxzQkFBOEI7SUFHcEU7UUFDSSxLQUFLLEVBQUUsQ0FBQztRQUhGLDBCQUFxQixHQUEwQixrQkFBVSxDQUFDO0lBSXBFLENBQUM7Q0FDSjtBQU5ELG9EQU1DIiwiZmlsZSI6InJlcG9zaXRvcmllcy9idWNrZXQtaXRlbS5yZXBvLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQnVja2V0SXRlbSwgSUJ1Y2tldEl0ZW1Eb2MgfSBmcm9tIFwiLi4vbW9kZWxzL2luZGV4XCI7XG5pbXBvcnQgeyBNb2RlbCB9IGZyb20gXCJtb25nb29zZVwiO1xuaW1wb3J0IHsgQmFzZVJlcG9zaXRvcnkgfSBmcm9tIFwiLi9pbmRleFwiO1xuXG5leHBvcnQgY2xhc3MgQnVja2V0SXRlbVJlcG9zaXRvcnkgZXh0ZW5kcyBCYXNlUmVwb3NpdG9yeTxJQnVja2V0SXRlbURvYz57XG4gICAgcHJvdGVjdGVkIG1vbmdvb3NlTW9kZWxJbnN0YW5jZTogTW9kZWw8SUJ1Y2tldEl0ZW1Eb2M+ID0gQnVja2V0SXRlbTtcbiAgICBcbiAgICBwdWJsaWMgY29uc3RydWN0b3IoKSB7XG4gICAgICAgIHN1cGVyKCk7XG4gICAgfVxufSJdfQ==
