@@ -62,6 +62,7 @@ node_modules
 server/**/*.js
 server/**/*.js.map
 typings
+/dist
 /npm-debug.log
 coverage
 o-ri/launchy
