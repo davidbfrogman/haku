@@ -1,3 +1,15 @@
+// Place your settings in this file to overwrite default and user settings.
+//"--require ts-node/register --reporter spec --watch-extensions ts"
 {
-    "git.ignoreLimitWarning": true
+    "workbench.editor.enablePreview": false,
+    "[typescript]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "[typescriptreact]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    }
 }

@@ -30,6 +30,7 @@ export const CONST = {
         INLINE_PASSWORD_CHANGE: '/update-password-inline',
         LIKES: '/likes',
         COMMENTS: '/comments',
+        ML: '/machine-learning',
         client: {
         },
         common:{

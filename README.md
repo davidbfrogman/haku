@@ -238,7 +238,7 @@ Clean up email verification emails to actually be sent out.
 export MONGO_CONNECTION_STRING=mongodb://asdfasdf:stupidpasshere@asdfasdf.mlab.com:2323423/haku-development
 export FACEBOOK_CLIENT_SECRET=therealsecret
 export NODE_ENV=dev
-export LA_ENV=dev.lyraatlas
+export LA_ENV=dev.haku-web
 ```
 
 # How to create shell scripts for setting environment variables.
@@ -249,15 +249,15 @@ These files are stored in `/usr/local/bin`
 
 so you can use nano to create the environment variables scripts.
 
-```nano dev.lyraatlas.sh```
+```nano dev.haku.sh```
 
 Then you need to change the script to actually be executable.
 
-```chmod u+x dev.lyraatlas.sh```
+```chmod u+x dev.haku.sh```
 
 Then you can run it in a way where it will set those varibles for the current shell
 
-```. dev.lyraatlas.sh```
+```. dev.haku.sh```
 
 Notice that period there.  that's the difference between running the script in a child process, and a parent process.
 

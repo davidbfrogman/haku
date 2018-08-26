@@ -29,6 +29,11 @@ gulp.task('copy-yaml', function () {
       .pipe(gulp.dest(paths.output));
 });
 
+gulp.task('copy-csv', function () {
+    gulp.src(paths.csv)
+      .pipe(gulp.dest(paths.output));
+});
+
 gulp.task('copy-json', function () {
     gulp.src(paths.json)
       .pipe(gulp.dest(paths.output));
@@ -51,7 +56,7 @@ gulp.task('copy-swagger', function () {
 gulp.task('build', function(callback) {
   return runSequence(
     'clean',
-    ['build-system', 'copy-yaml', 'copy-json', 'copy-css', 'copy-swagger'],
+    ['build-system', 'copy-yaml','copy-csv', 'copy-json', 'copy-css', 'copy-swagger'],
     callback
   );
 });

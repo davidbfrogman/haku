@@ -4,6 +4,7 @@ var outputRoot = 'dist/';
 module.exports = {
   root: appRoot,
   yaml: appRoot + '**/*.yaml',
+  csv: appRoot + '**/*.csv',
   json: appRoot + '**/*.json',
   source: appRoot + '**/*.ts',
   data: appRoot + '**/*.json',

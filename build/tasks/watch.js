@@ -16,6 +16,8 @@ gulp.task('watch', ['serve'], function() {
   gulp.watch(paths.source, ['build-system']).on('change', reportChange);
   gulp.watch(paths.yaml, ['copy-yaml']).on('change', reportChange);
   gulp.watch(paths.json, ['copy-json']).on('change', reportChange);
+  gulp.watch(paths.csv, ['copy-csv']).on('change', reportChange);
+  gulp.watch(paths.json, ['copy-csv']).on('change', reportChange);
   gulp.watch(paths.css, ['copy-css']).on('change', reportChange);
   gulp.watch(paths.swagger, ['copy-swagger']).on('change', reportChange);
 });

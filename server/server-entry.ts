@@ -1,5 +1,5 @@
 // This import has to be the first thing, so that new relic can instrument everything.
-const newRelic = require('newrelic');
+//const newRelic = require('newrelic');
 import * as http from 'http';
 import * as https from 'https';
 import * as pem from 'pem';
